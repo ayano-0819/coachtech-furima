@@ -1,6 +1,7 @@
 ## アプリケーション名
 coachtech-furima
 
+
 ### 環境構築
 
 #### 1. リポジトリをクローン
@@ -61,6 +62,7 @@ php artisan migrate
 php artisan db:seed
 ```
 
+
 ### 使用技術（実行環境）
 - PHP 8.1.34
 - Laravel 8.7
@@ -68,12 +70,12 @@ php artisan db:seed
 - Nginx 1.21
 - Docker 28.4.0
 
+
 ### URL
 
 ・お問い合わせフォーム
 ```
 http://localhost
-
 ```
 ・phpMyAdmin
 ```
