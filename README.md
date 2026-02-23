@@ -83,4 +83,4 @@ http://localhost:8080
 ```
 
 ## ER図
-![ER図](src/docs/furima-er-diagram.png)
+

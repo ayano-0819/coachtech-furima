@@ -6,25 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateLikesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('user_id')
+                    ->constrained()
+                    ->onDelete('cascade');
+            
+            $table->foreignId('item_id')
+                    ->constrained()
+                    ->onDelete('cascade');
+            
+            $table->unique(['user_id', 'item_id']); // 同じ商品を2回いいねできないようにする
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('likes');
     }
