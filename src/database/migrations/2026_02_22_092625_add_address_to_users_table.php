@@ -9,8 +9,8 @@ class AddAddressToUsersTable extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('postal_code')->after('password');
-            $table->string('address')->after('postal_code');
+            $table->string('postal_code')->nullable()->after('password');
+            $table->string('address')->nullable()->after('postal_code');
             $table->string('building')->nullable()->after('address');
         });
     }
