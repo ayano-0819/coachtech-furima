@@ -40,9 +40,6 @@
     <div>
         <label>確認用パスワード</label>
         <input type="password" name="password_confirmation">
-        @error('password_confirmation')
-            <div>{{ $message }}</div>
-        @enderror
     </div>
 
     <button type="submit">登録する</button>

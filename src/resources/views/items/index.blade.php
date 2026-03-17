@@ -30,10 +30,10 @@
 @section('content')
 
     <div class="tabs">
-        <a href="/" class="{{ request('tab') !== 'mylist' ? 'active' : '' }}">
+        <a href="/?keyword={{ request('keyword') }}" class="{{ $tab !== 'mylist' ? 'active' : '' }}">
             おすすめ
         </a>
-        <a href="/?tab=mylist" class="{{ request('tab') === 'mylist' ? 'active' : '' }}">
+        <a href="/?tab=mylist&keyword={{ request('keyword') }}" class="{{ $tab === 'mylist' ? 'active' : '' }}">
             マイリスト
         </a>
     </div>
@@ -41,9 +41,9 @@
     <div class="item-list">
         @foreach($items as $item)
             <div class="item-card">
-                <a href="/item/{{ $item->id }}">
+                <a href="{{ route('items.show', ['item_id' => $item->id]) }}">
                     <div class="item-image">
-                        商品画像
+                        <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
                     </div>
 
                     <p class="item-name">
