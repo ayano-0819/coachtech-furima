@@ -3,17 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ItemController;
-
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
 Route::middleware('auth')->group(function () {
 
+    // マイページ表示
+    Route::get('/mypage', [MypageController::class, 'show'])
+        ->name('mypage');
+
     // プロフィール画面表示
     Route::get('/mypage/profile', [MypageController::class, 'editProfile'])
         ->name('mypage.profile.edit');
 
-    // 更新処理
+    // プロフィール更新処理
     Route::post('/mypage/profile', [MypageController::class, 'updateProfile'])
         ->name('mypage.profile.update');
 
@@ -27,6 +31,18 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/item/{item_id}/like', [ItemController::class, 'unlike'])
         ->name('likes.destroy');
+    
+    // 商品購入画面表示
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])->name('purchase.create');
+
+    // 住所変更画面表示
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])
+        ->name('purchase.address.edit');
+
+    // 住所変更更新
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])
+        ->name('purchase.address.update');
+
 });
 
 // 商品詳細画面表示

@@ -19,8 +19,8 @@
         </form>
     @endauth
 
-    <a href="/mypage">マイページ</a>
-    <a href="/sell">出品</a>
+    <a href="{{ route('mypage') }}">マイページ</a>
+    <a href="{{ route('items.create') }}">出品</a>
 @endsection
 
 @section('content')
@@ -33,13 +33,15 @@
 
             <div class="profile-setting__image-area">
                 <div class="profile-setting__image-preview">
-                    {{-- 画像がある場合は img に置き換えてOK --}}
+                    @if($user->profile_image_path)
+                        <img src="{{ asset('storage/' . $user->profile_image_path) }}" alt="プロフィール画像">
+                    @endif
                 </div>
 
                 <label for="image" class="profile-setting__image-button">
                     画像を選択する
                 </label>
-                <input type="file" name="image" id="image" class="profile-setting__file">
+                <input type="file" name="profile_image" id="image" class="profile-setting__file">
             </div>
 
             <div class="profile-setting__group">

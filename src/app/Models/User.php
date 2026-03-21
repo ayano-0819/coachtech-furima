@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Item;
+use App\Models\Order;
 
 
 class User extends Authenticatable
@@ -25,6 +27,7 @@ class User extends Authenticatable
         'postal_code',
         'address',
         'building',
+        'profile_image_path',
     ];
 
     /**
@@ -48,12 +51,12 @@ class User extends Authenticatable
 
     public function items()
     {
-        return $this->hasMany(\App\Models\Item::class);
+        return $this->hasMany(Item::class);
     }
 
     public function orders()
     {
-        return $this->hasMany(\App\Models\Order::class);
+        return $this->hasMany(Order::class);
     }
 
     public function likes()

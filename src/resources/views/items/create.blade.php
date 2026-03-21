@@ -19,8 +19,8 @@
         </form>
     @endauth
 
-    <a href="/mypage">マイページ</a>
-    <a href="/sell">出品</a>
+    <a href="{{ route('mypage') }}">マイページ</a>
+    <a href="{{ route('items.create') }}">出品</a>
 @endsection
 
 @section('content')

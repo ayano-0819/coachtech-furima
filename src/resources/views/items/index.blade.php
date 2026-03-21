@@ -23,8 +23,8 @@
         </form>
     @endauth
 
-    <a href="/mypage">マイページ</a>
-    <a href="/sell">出品</a>
+    <a href="{{ route('mypage') }}">マイページ</a>
+    <a href="{{ route('items.create') }}">出品</a>
 @endsection
 
 @section('content')
@@ -42,9 +42,9 @@
         @foreach($items as $item)
             <div class="item-card">
                 <a href="{{ route('items.show', ['item_id' => $item->id]) }}">
-                    <div class="item-image">
+                    <p class="item-image">
                         <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
-                    </div>
+                    </p>
 
                     <p class="item-name">
                         {{ $item->name }}

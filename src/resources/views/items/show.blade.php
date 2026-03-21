@@ -23,8 +23,8 @@
         </form>
     @endauth
 
-    <a href="/mypage">マイページ</a>
-    <a href="/sell">出品</a>
+    <a href="{{ route('mypage') }}">マイページ</a>
+    <a href="{{ route('items.create') }}">出品</a>
 @endsection
 
 @section('content')
@@ -75,7 +75,7 @@
 
         </div>
 
-        <a href="#">購入手続きへ</a>
+        <a href="{{ route('purchase.create', ['item_id' => $item->id]) }}">購入手続きへ</a>
 
         <h2>商品説明</h2>
         <p>{{ $item->description }}</p>
