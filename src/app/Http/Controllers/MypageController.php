@@ -36,14 +36,14 @@ class MypageController extends Controller
         $user->address = $request->address;
         $user->building = $request->building;
 
-        // ★画像処理
+        // ★　画像処理
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('profiles', 'public');
             $user->profile_image_path = $path;
         }
         $user->save();
 
-        // ★ マイページに戻す
-        return redirect()->route('mypage');
+        // ★ 商品一覧画面に戻す（コーチ確認済み）
+        return redirect()->route('items.index');
     }
 }

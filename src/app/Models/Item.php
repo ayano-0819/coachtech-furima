@@ -16,33 +16,33 @@ class Item extends Model
 
     public function condition()
     {
-        return $this->belongsTo(\App\Models\Condition::class);
+        return $this->belongsTo(Condition::class);
     }
 
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class, 'category_items')
+        return $this->belongsToMany(Category::class, 'category_items')
                     ->withTimestamps();
     }
 
     public function categoryItems()
     {
-        return $this->hasMany(\App\Models\CategoryItem::class);
+        return $this->hasMany(CategoryItem::class);
     }
 
     public function order()
     {
-        return $this->hasOne(\App\Models\Order::class);
+        return $this->hasOne(Order::class);
     }
 
     public function likes()
     {
-        return $this->hasMany(\App\Models\Like::class);
+        return $this->hasMany(Like::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(\App\Models\Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
 }

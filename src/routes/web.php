@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/item/{item_id}/like', [ItemController::class, 'unlike'])
         ->name('likes.destroy');
     
+    // コメント送信
+    Route::post('/item/{item_id}/comments', [ItemController::class, 'storeComment'])
+        ->name('comments.store');
+    
     // 商品購入画面表示
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])->name('purchase.create');
 

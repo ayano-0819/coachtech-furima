@@ -66,12 +66,12 @@
             {{-- 出品した商品 --}}
             <div class="mypage__item-list">
                 @forelse($sellItems as $item)
-                    <div class="mypage__item">
+                    <a href="{{ route('items.show', ['item_id' => $item->id]) }}" class="mypage__item">
                         <div class="mypage__item-image">
                             <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
                         </div>
                         <p class="mypage__item-name">{{ $item->name }}</p>
-                    </div>
+                    </a>
                 @empty
                     <p>出品した商品はありません</p>
                 @endforelse

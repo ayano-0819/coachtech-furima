@@ -61,11 +61,11 @@ class User extends Authenticatable
 
     public function likes()
     {
-        return $this->hasMany(\App\Models\Like::class);
+        return $this->hasMany(Like::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(\App\Models\Comment::class);
+        return $this->hasMany(Comment::class);
     }
 }
