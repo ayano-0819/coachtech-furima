@@ -44,6 +44,10 @@
                 <a href="{{ route('items.show', ['item_id' => $item->id]) }}">
                     <p class="item-image">
                         <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
+
+                        @if ($item->is_sold)
+                            <span class="item-sold">Sold</span>
+                        @endif
                     </p>
 
                     <p class="item-name">

@@ -31,6 +31,10 @@
 <div class="item-detail">
     <div class="item-detail__image">
         <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
+
+        @if ($item->is_sold)
+        <span class="item-detail__sold">Sold</span>
+        @endif
     </div>
 
     <div class="item-detail__content">
@@ -79,7 +83,7 @@
         </div>
 
         @auth
-            @if(auth()->id() !== $item->user_id)
+            @if(auth()->id() !== $item->user_id && !$item->is_sold)
                 <a href="{{ route('purchase.create', ['item_id' => $item->id]) }}" class="purchase-btn">
                     購入手続きへ
                 </a>

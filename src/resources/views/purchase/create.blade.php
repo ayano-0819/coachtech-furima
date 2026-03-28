@@ -94,9 +94,10 @@
                 </div>
             </div>
 
-            <button type="button" class="purchase__button">
-                購入する
-            </button>
+            <form action="{{ route('purchase.checkout', ['item_id' => $item->id]) }}" method="POST">
+                @csrf
+                    <button type="submit">購入する</button>
+            </form>
         </div>
     </div>
 </div>
