@@ -51,13 +51,17 @@
                             カード支払い
                         </option>
                     </select>
+
+                    @error('payment_method')
+                        <p>{{ $message }}</p>
+                    @enderror
                 </div>
             </form>
 
             <div class="purchase__section">
                 <div class="purchase__address-header">
                     <h2 class="purchase__label">配送先</h2>
-                    <a href="{{ route('purchase.address.edit', ['item_id' => $item->id]) }}">変更する</a>
+                    <a href="{{ route('purchase.address.edit', ['item_id' => $item->id, 'payment_method' => request('payment_method')]) }}">変更する</a>
                 </div>
 
                 <div class="purchase__address-body">
@@ -96,7 +100,8 @@
 
             <form action="{{ route('purchase.checkout', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
-                    <button type="submit">購入する</button>
+                <input type="hidden" name="payment_method" value="{{ request('payment_method') }}">
+                <button type="submit">購入する</button>
             </form>
         </div>
     </div>

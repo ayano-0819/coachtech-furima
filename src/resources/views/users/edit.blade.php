@@ -42,6 +42,10 @@
                     画像を選択する
                 </label>
                 <input type="file" name="profile_image" id="image" class="profile-setting__file">
+
+                @error('profile_image')
+                    <p>{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="profile-setting__group">
@@ -53,10 +57,13 @@
                     class="profile-setting__input"
                     value="{{ old('name', $user->name ?? '') }}"
                 >
+                @error('name')
+                    <p>{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="profile-setting__group">
-                <label for="post_code" class="profile-setting__label">郵便番号</label>
+                <label for="postal_code" class="profile-setting__label">郵便番号</label>
                 <input
                     type="text"
                     name="postal_code"
@@ -64,6 +71,9 @@
                     class="profile-setting__input"
                     value="{{ old('postal_code', $user->postal_code ?? '') }}"
                 >
+                @error('postal_code')
+                    <p>{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="profile-setting__group">
@@ -75,6 +85,9 @@
                     class="profile-setting__input"
                     value="{{ old('address', $user->address ?? '') }}"
                 >
+                @error('address')
+                    <p>{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="profile-setting__group">

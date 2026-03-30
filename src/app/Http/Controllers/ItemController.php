@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Like;
 use App\Models\Comment;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\ExhibitionRequest;  
 
 class ItemController extends Controller
 {
@@ -75,8 +76,9 @@ class ItemController extends Controller
         return view('items.create', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
+    
         // 画像を storage/app/public/items に保存
         $imagePath = $request->file('image')->store('items', 'public');
 

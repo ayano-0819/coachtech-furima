@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfileRequest;
 
 class MypageController extends Controller
 {
@@ -27,20 +28,20 @@ class MypageController extends Controller
     }
 
     // ★ プロフィール更新
-    public function updateProfile(Request $request)
+    public function updateProfile(ProfileRequest $request)
     {
-        $user = Auth::user();
-
-        $user->name = $request->name;
-        $user->postal_code = $request->postal_code;
-        $user->address = $request->address;
-        $user->building = $request->building;
+        $user = auth()->user();
 
         // ★　画像処理
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('profiles', 'public');
             $user->profile_image_path = $path;
         }
+
+        $user->name = $request->name;
+        $user->postal_code = $request->postal_code;
+        $user->address = $request->address;
+        $user->building = $request->building;
         $user->save();
 
         // ★ 商品一覧画面に戻す（コーチ確認済み）

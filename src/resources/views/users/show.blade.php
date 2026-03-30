@@ -80,12 +80,12 @@
             {{-- 購入した商品 --}}
             <div class="mypage__item-list">
                 @forelse($buyItems as $order)
-                    <div class="mypage__item">
+                    <a href="{{ route('items.show', ['item_id' => $order->item->id]) }}" class="mypage__item">
                         <div class="mypage__item-image">
                             <img src="{{ asset('storage/' . $order->item->image_path) }}" alt="{{ $order->item->name }}">
                         </div>
                         <p class="mypage__item-name">{{ $order->item->name ?? '商品名なし' }}</p>
-                    </div>
+                    </a>
                 @empty
                     <p>購入した商品はありません</p>
                 @endforelse

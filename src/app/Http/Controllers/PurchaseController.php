@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -26,7 +28,7 @@ class PurchaseController extends Controller
         return view('purchase.address', compact('user', 'item_id'));
     }
 
-    public function updateAddress(Request $request, $item_id)
+    public function updateAddress(AddressRequest $request, $item_id)
     {
         session([
             'postal_code' => $request->postal_code,
@@ -34,10 +36,13 @@ class PurchaseController extends Controller
             'building' => $request->building,
         ]);
 
-        return redirect()->route('purchase.create', ['item_id' => $item_id]);
+        return redirect()->route('purchase.create', [
+        'item_id' => $item_id,
+        'payment_method' => $request->payment_method,
+        ]);
     }
 
-    public function checkout(Request $request, $item_id)
+    public function checkout(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
         $user = auth()->user();
@@ -52,10 +57,21 @@ class PurchaseController extends Controller
                 ->with('error', '自分の商品は購入できません。');
         }
 
+        $postalCode = session('postal_code', $user->postal_code);
+        $address = session('address', $user->address);
+        $building = session('building', $user->building);
+
+        if (empty($postalCode) || empty($address)) {
+            return redirect()->route('purchase.address.edit', ['item_id' => $item->id])
+                ->with('error', '配送先を入力してください。');
+    }
+
         // 支払い方法を一時保存
         // 例：カード支払い=1、コンビニ支払い=2
+        $paymentMethod = $request->payment_method === 'card' ? 1 : 2;
+
         session([
-            'payment_method' => $request->payment_method ?? 1,
+            'payment_method' => $paymentMethod,
             'postal_code' => session('postal_code', $user->postal_code),
             'address' => session('address', $user->address),
             'building' => session('building', $user->building),

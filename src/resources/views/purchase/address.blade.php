@@ -30,14 +30,22 @@
     <form action="{{ route('purchase.address.update', ['item_id' => $item_id]) }}" method="POST">
         @csrf
 
+        <input type="hidden" name="payment_method" value="{{ request('payment_method') }}">
+
         <div>
             <label>郵便番号</label>
             <input type="text" name="postal_code" value="{{ old('postal_code', session('postal_code', $user->postal_code)) }}">
+            @error('postal_code')
+                <p>{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
             <label>住所</label>
             <input type="text" name="address" value="{{ old('address', session('address', $user->address)) }}">
+            @error('address')
+                <p>{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
