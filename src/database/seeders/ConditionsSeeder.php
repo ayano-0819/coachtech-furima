@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ConditionsTableSeeder extends Seeder
+class ConditionsSeeder extends Seeder
 {
     public function run(): void
     {

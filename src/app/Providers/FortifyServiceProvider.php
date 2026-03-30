@@ -5,36 +5,38 @@ namespace App\Providers;
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Requests\LoginRequest;
 use App\Http\Responses\RegisterResponse;
+use App\Http\Responses\LoginResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         // 会員登録直後の遷移先を /mypage/profile にするため
         $this->app->singleton(
-            \Laravel\Fortify\Contracts\RegisterResponse::class,
-            \App\Http\Responses\RegisterResponse::class
+            RegisterResponseContract::class,
+            RegisterResponse::class
+        );
+
+        // 未認証ユーザーがログインした直後はメール認証誘導画面へ飛ばすため
+        $this->app->singleton(
+            LoginResponseContract::class,
+            LoginResponse::class
         );
 
         // Fortifyが使うLoginRequestをあなたのLoginRequestに差し替える
         $this->app->bind(
             \Laravel\Fortify\Http\Requests\LoginRequest::class,
-            \App\Http\Requests\LoginRequest::class
+            LoginRequest::class
         );
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         // 会員登録（Fortify）
