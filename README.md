@@ -11,7 +11,7 @@ coachtech-furima
 10代〜30代の一般ユーザーを想定しています。
 
 ## 対応環境
-- PC（Chrome / Firefox / Safari の最新バージョン）
+PC（Chrome / Firefox / Safari の最新バージョン）
 
 ---
 
@@ -90,11 +90,19 @@ php artisan db:seed
 
 ## ログイン情報
 
-### 一般ユーザー
+### 一般ユーザー（シーディングデータ）
+- メールアドレス: test1@example.com
+- パスワード: password
+
+- メールアドレス: test2@example.com
+- パスワード: password
+
+- メールアドレス: test3@example.com
+- パスワード: password
 - メールアドレス: test@example.com
 - パスワード: password
 
-※シーディングデータ、または会員登録によりログイン可能
+※ すべてのユーザーはメール認証済みの状態で登録されています。
 
 ---
 
