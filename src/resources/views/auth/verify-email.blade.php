@@ -12,7 +12,7 @@
 
     <!-- 認証はこちらからボタン（※実際はメール確認させる導線） -->
     <div style="margin-top: 30px;">
-        <a href="mailto:" style="text-decoration: none;">
+        <a href="https://mailtrap.io/inboxes" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
             <button style="padding: 10px 20px; cursor: pointer;">
                 認証はこちらから
             </button>
