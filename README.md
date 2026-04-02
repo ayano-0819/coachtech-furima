@@ -35,6 +35,7 @@ docker compose up -d --build
 ### 4. Laravelのパッケージをインストール
 ```bash
 docker compose exec php bash
+
 composer install
 ```
 
