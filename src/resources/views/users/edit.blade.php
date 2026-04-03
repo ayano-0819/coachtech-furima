@@ -2,25 +2,38 @@
 
 @section('title', 'プロフィール設定')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/users/edit.css') }}">
+@endsection
+
 @section('header-nav')
-    <form action="/" method="GET">
-        <input
-            type="text"
-            name="keyword"
-            value="{{ request('keyword') }}"
-            placeholder="何をお探しですか？"
-        >
-    </form>
-
-    @auth
-        <form method="POST" action="/logout" style="display:inline;">
-            @csrf
-            <button type="submit">ログアウト</button>
+    <div class="header__center">
+        <form action="/" method="GET" class="header__search-form">
+            <input
+                type="text"
+                name="keyword"
+                value="{{ request('keyword') }}"
+                placeholder="なにをお探しですか？"
+                class="header__search-input"
+            >
         </form>
-    @endauth
+    </div>
 
-    <a href="{{ route('mypage') }}">マイページ</a>
-    <a href="{{ route('items.create') }}">出品</a>
+    <div class="header__right">
+        @guest
+            <a href="/login" class="header__link">ログイン</a>
+        @endguest
+
+        @auth
+            <form method="POST" action="/logout" class="header__logout-form">
+                @csrf
+                <button type="submit" class="header__link header__logout-button">ログアウト</button>
+            </form>
+        @endauth
+
+        <a href="{{ route('mypage') }}" class="header__link">マイページ</a>
+        <a href="{{ route('items.create') }}" class="header__sell-button">出品</a>
+    </div>
 @endsection
 
 @section('content')
@@ -35,18 +48,21 @@
                 <div class="profile-setting__image-preview">
                     @if($user->profile_image_path)
                         <img src="{{ asset('storage/' . $user->profile_image_path) }}" alt="プロフィール画像">
+                    @else
+                        <div class="profile-setting__image-placeholder"></div>
                     @endif
                 </div>
 
                 <label for="image" class="profile-setting__image-button">
                     画像を選択する
                 </label>
-                <input type="file" name="profile_image" id="image" class="profile-setting__file">
 
-                @error('profile_image')
-                    <p>{{ $message }}</p>
-                @enderror
+                <input type="file" name="profile_image" id="image" class="profile-setting__file">
             </div>
+
+            @error('profile_image')
+                <p class="profile-setting__error profile-setting__error--image">{{ $message }}</p>
+            @enderror
 
             <div class="profile-setting__group">
                 <label for="name" class="profile-setting__label">ユーザー名</label>
@@ -58,7 +74,7 @@
                     value="{{ old('name', $user->name ?? '') }}"
                 >
                 @error('name')
-                    <p>{{ $message }}</p>
+                    <p class="profile-setting__error">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -72,7 +88,7 @@
                     value="{{ old('postal_code', $user->postal_code ?? '') }}"
                 >
                 @error('postal_code')
-                    <p>{{ $message }}</p>
+                    <p class="profile-setting__error">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -86,7 +102,7 @@
                     value="{{ old('address', $user->address ?? '') }}"
                 >
                 @error('address')
-                    <p>{{ $message }}</p>
+                    <p class="profile-setting__error">{{ $message }}</p>
                 @enderror
             </div>
 

@@ -2,25 +2,38 @@
 
 @section('title', '商品購入')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/purchase/create.css') }}?v=2">
+@endsection
+
 @section('header-nav')
-    <form action="/" method="GET">
-        <input
-            type="text"
-            name="keyword"
-            value="{{ request('keyword') }}"
-            placeholder="何をお探しですか？"
-        >
-    </form>
-
-    @auth
-        <form method="POST" action="/logout" style="display:inline;">
-            @csrf
-            <button type="submit">ログアウト</button>
+    <div class="header__center">
+        <form action="/" method="GET" class="header__search-form">
+            <input
+                type="text"
+                name="keyword"
+                value="{{ request('keyword') }}"
+                placeholder="なにをお探しですか？"
+                class="header__search-input"
+            >
         </form>
-    @endauth
+    </div>
 
-    <a href="{{ route('mypage') }}">マイページ</a>
-    <a href="{{ route('items.create') }}">出品</a>
+    <div class="header__right">
+        @guest
+            <a href="/login" class="header__link">ログイン</a>
+        @endguest
+
+        @auth
+            <form method="POST" action="/logout" class="header__logout-form">
+                @csrf
+                <button type="submit" class="header__link header__logout-button">ログアウト</button>
+            </form>
+        @endauth
+
+        <a href="{{ route('mypage') }}" class="header__link">マイページ</a>
+        <a href="{{ route('items.create') }}" class="header__sell-button">出品</a>
+    </div>
 @endsection
 
 @section('content')
@@ -30,7 +43,11 @@
 
             <div class="purchase__product">
                 <div class="purchase__image">
-                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
+                    <img
+                        src="{{ asset('storage/' . $item->image_path) }}"
+                        alt="{{ $item->name }}"
+                        class="purchase__image-tag"
+                    >
                 </div>
 
                 <div class="purchase__product-info">
@@ -39,9 +56,10 @@
                 </div>
             </div>
 
-            <form action="{{ route('purchase.create', ['item_id' => $item->id]) }}" method="GET">
+            <form action="{{ route('purchase.create', ['item_id' => $item->id]) }}" method="GET" class="purchase__payment-form">
                 <div class="purchase__section">
                     <h2 class="purchase__label">支払い方法</h2>
+
                     <select name="payment_method" class="purchase__select" onchange="this.form.submit()">
                         <option value="">選択してください</option>
                         <option value="convenience" {{ request('payment_method') === 'convenience' ? 'selected' : '' }}>
@@ -53,7 +71,7 @@
                     </select>
 
                     @error('payment_method')
-                        <p>{{ $message }}</p>
+                        <p class="purchase__error">{{ $message }}</p>
                     @enderror
                 </div>
             </form>
@@ -61,13 +79,20 @@
             <div class="purchase__section">
                 <div class="purchase__address-header">
                     <h2 class="purchase__label">配送先</h2>
-                    <a href="{{ route('purchase.address.edit', ['item_id' => $item->id, 'payment_method' => request('payment_method')]) }}">変更する</a>
+
+                    <a
+                        href="{{ route('purchase.address.edit', ['item_id' => $item->id, 'payment_method' => request('payment_method')]) }}"
+                        class="purchase__address-link"
+                    >
+                        変更する
+                    </a>
                 </div>
 
                 <div class="purchase__address-body">
                     <p class="purchase__address-postal">
                         〒 {{ session('postal_code', auth()->user()->postal_code) }}
                     </p>
+
                     <p class="purchase__address-text">
                         {{ session('address', auth()->user()->address) }}
                         {{ session('building', auth()->user()->building) }}
@@ -80,13 +105,13 @@
         <div class="purchase__right">
             <div class="purchase__summary">
                 <div class="purchase__summary-row">
-                    <span>商品代金</span>
-                    <span>¥ {{ number_format($item->price) }}</span>
+                    <span class="purchase__summary-label">商品代金</span>
+                    <span class="purchase__summary-value">¥ {{ number_format($item->price) }}</span>
                 </div>
 
                 <div class="purchase__summary-row">
-                    <span>支払い方法</span>
-                    <span>
+                    <span class="purchase__summary-label">支払い方法</span>
+                    <span class="purchase__summary-value">
                         @if(request('payment_method') === 'convenience')
                             コンビニ支払い
                         @elseif(request('payment_method') === 'card')
@@ -98,12 +123,16 @@
                 </div>
             </div>
 
-            <form action="{{ route('purchase.checkout', ['item_id' => $item->id]) }}" method="POST">
+            <form action="{{ route('purchase.checkout', ['item_id' => $item->id]) }}" method="POST" class="purchase__submit-form">
                 @csrf
                 <input type="hidden" name="payment_method" value="{{ request('payment_method') }}">
-                <button type="submit">購入する</button>
+
+                <button type="submit" class="purchase__submit-button">
+                    購入する
+                </button>
             </form>
         </div>
+
     </div>
 </div>
 @endsection

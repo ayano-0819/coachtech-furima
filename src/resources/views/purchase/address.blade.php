@@ -2,58 +2,91 @@
 
 @section('title', '住所の変更')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/purchase/address.css') }}">
+@endsection
+
 @section('header-nav')
-    <form action="/" method="GET">
-        <input
-            type="text"
-            name="keyword"
-            value="{{ request('keyword') }}"
-            placeholder="何をお探しですか？"
-        >
-    </form>
-
-    @auth
-        <form method="POST" action="/logout" style="display:inline;">
-            @csrf
-            <button type="submit">ログアウト</button>
+    <div class="header__center">
+        <form action="/" method="GET" class="header__search-form">
+            <input
+                type="text"
+                name="keyword"
+                value="{{ request('keyword') }}"
+                placeholder="なにをお探しですか？"
+                class="header__search-input"
+            >
         </form>
-    @endauth
+    </div>
 
-    <a href="{{ route('mypage') }}">マイページ</a>
-    <a href="{{ route('items.create') }}">出品</a>
+    <div class="header__right">
+        @guest
+            <a href="/login" class="header__link">ログイン</a>
+        @endguest
+
+        @auth
+            <form method="POST" action="/logout" class="header__logout-form">
+                @csrf
+                <button type="submit" class="header__link header__logout-button">ログアウト</button>
+            </form>
+        @endauth
+
+        <a href="{{ route('mypage') }}" class="header__link">マイページ</a>
+        <a href="{{ route('items.create') }}" class="header__sell-button">出品</a>
+    </div>
 @endsection
 
 @section('content')
 <div class="address-edit">
-    <h1>住所の変更</h1>
+    <div class="address-edit__inner">
+        <h1 class="address-edit__title">住所の変更</h1>
 
-    <form action="{{ route('purchase.address.update', ['item_id' => $item_id]) }}" method="POST">
-        @csrf
+        <form action="{{ route('purchase.address.update', ['item_id' => $item_id]) }}" method="POST" class="address-edit__form">
+            @csrf
 
-        <input type="hidden" name="payment_method" value="{{ request('payment_method') }}">
+            <input type="hidden" name="payment_method" value="{{ request('payment_method') }}">
 
-        <div>
-            <label>郵便番号</label>
-            <input type="text" name="postal_code" value="{{ old('postal_code', session('postal_code', $user->postal_code)) }}">
-            @error('postal_code')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+            <div class="address-edit__group">
+                <label for="postal_code" class="address-edit__label">郵便番号</label>
+                <input
+                    type="text"
+                    name="postal_code"
+                    id="postal_code"
+                    class="address-edit__input"
+                    value="{{ old('postal_code', session('postal_code', $user->postal_code)) }}"
+                >
+                @error('postal_code')
+                    <p class="address-edit__error">{{ $message }}</p>
+                @enderror
+            </div>
 
-        <div>
-            <label>住所</label>
-            <input type="text" name="address" value="{{ old('address', session('address', $user->address)) }}">
-            @error('address')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+            <div class="address-edit__group">
+                <label for="address" class="address-edit__label">住所</label>
+                <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    class="address-edit__input"
+                    value="{{ old('address', session('address', $user->address)) }}"
+                >
+                @error('address')
+                    <p class="address-edit__error">{{ $message }}</p>
+                @enderror
+            </div>
 
-        <div>
-            <label>建物名</label>
-            <input type="text" name="building" value="{{ old('building', session('building', $user->building)) }}">
-        </div>
+            <div class="address-edit__group">
+                <label for="building" class="address-edit__label">建物名</label>
+                <input
+                    type="text"
+                    name="building"
+                    id="building"
+                    class="address-edit__input"
+                    value="{{ old('building', session('building', $user->building)) }}"
+                >
+            </div>
 
-        <button type="submit">更新する</button>
-    </form>
+            <button type="submit" class="address-edit__submit">更新する</button>
+        </form>
+    </div>
 </div>
 @endsection

@@ -101,8 +101,6 @@ php artisan db:seed
 - メールアドレス: test3@example.com
 - パスワード: password
 
-※ すべてのユーザーはメール認証済みの状態で登録されている。
-
 ---
 
 ## メール認証について

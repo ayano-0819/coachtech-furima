@@ -1,0 +1,204 @@
+/* ========================================
+   マイページ全体
+======================================== */
+.mypage {
+    min-height: calc(100vh - 4.375rem);
+    /* ヘッダー分引いた高さ */
+
+    padding: 2rem 2rem 3rem;
+    /* 上 左右 下 */
+}
+
+
+/* ========================================
+   プロフィールエリア
+======================================== */
+.mypage__profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 8rem;
+    /* ← これで左右の内側に寄る（超重要） */
+
+    margin-bottom: 2rem;
+}
+
+
+/* 左側（画像＋名前） */
+.mypage__profile-left {
+    display: flex;
+    align-items: center;
+
+    gap: 2rem;
+    /* 画像と名前の間 */
+}
+
+
+/* プロフィール画像 */
+.mypage__icon {
+    width: 6rem;
+    height: 6rem;
+
+    border-radius: 50%;
+    /* 丸 */
+
+    background: #d9d9d9;
+    /* デフォルト色 */
+
+    overflow: hidden;
+}
+
+
+/* 中の画像 */
+.mypage__icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    /* いい感じにフィット */
+}
+
+
+/* ユーザー名 */
+.mypage__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+/* 編集ボタン */
+.mypage__edit-btn {
+    padding: 0.5rem 1.5rem;
+
+    border: 0.125rem solid #ff5a5a;
+    /* 赤枠 */
+
+    border-radius: 0.5rem;
+
+    color: #ff5a5a;
+    background: #fff;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   タブ
+======================================== */
+.mypage__tabs {
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 0.0625rem solid #000;
+
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 2rem;
+
+    padding: 0 2rem;
+    gap: 2rem;
+}
+
+.mypage__tab {
+    display: inline-block;
+    margin-left: 3rem;
+    padding: 0 0 1rem;
+    /* 下だけ余白をつける */
+
+    font-size: 1rem;
+    color: #777;
+    text-decoration: none;
+}
+
+.mypage__tab--active {
+    color: #ff0000;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   商品一覧
+======================================== */
+.mypage__item-list {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    /* 4列 */
+
+    gap: 2rem;
+    /* カード間隔 */
+}
+
+
+/* 商品カード */
+.mypage__item {
+    text-decoration: none;
+    color: #000;
+}
+
+
+/* 商品画像 */
+.mypage__item-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* 正方形 */
+
+    background: #d9d9d9;
+
+    margin-bottom: 0.5rem;
+}
+
+
+/* 画像 */
+.mypage__item-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* 商品名 */
+.mypage__item-name {
+    font-size: 0.9rem;
+}
+
+/* プロフィール画像がないときの丸 */
+.mypage__icon-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #d9d9d9;
+    border-radius: 50%;
+}
+
+
+/* アクティブタブ */
+.mypage__tab--active {
+    color: #ff0000;
+    font-weight: 700;
+}
+
+
+/* 商品がないときのメッセージ */
+.mypage__empty-message {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* ========================================
+   PC幅（1400〜1540px）
+======================================== */
+@media screen and (min-width: 87.5rem) and (max-width: 96.25rem) {
+    .mypage {
+        padding: 2.5rem 3rem 3rem;
+    }
+
+    .mypage__item-list {
+        gap: 2.5rem;
+    }
+}

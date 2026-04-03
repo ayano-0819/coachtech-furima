@@ -2,39 +2,48 @@
 
 @section('title', 'メール認証')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/auth/verify-email.css?v=2') }}">
+@endsection
+
+@section('header-nav')
+@endsection
+
 @section('content')
-<div style="text-align: center; margin-top: 80px;">
+<div class="verify">
+    <div class="verify__inner">
 
-    <p>
-        登録していただいたメールアドレスに認証メールを送りました。<br>
-        メール認証を完了してください。
-    </p>
+        <p class="verify__message">
+            登録していただいたメールアドレスに認証メールを送付しました。<br>
+            メール認証を完了してください。
+        </p>
 
-    <!-- 認証はこちらからボタン（※実際はメール確認させる導線） -->
-    <div style="margin-top: 30px;">
-        <a href="https://mailtrap.io/inboxes" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-            <button style="padding: 10px 20px; cursor: pointer;">
+        <div class="verify__button-area">
+            <a
+                href="https://mailtrap.io/inboxes"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="verify__link-button"
+            >
                 認証はこちらから
-            </button>
-        </a>
-    </div>
-
-    <!-- 再送 -->
-    <div style="margin-top: 20px;">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
-            <button type="submit" style="color: blue; background: none; border: none; cursor: pointer;">
-                認証メールを再送する
-            </button>
-        </form>
-    </div>
-
-    <!-- メッセージ表示（再送後） -->
-    @if (session('message'))
-        <div style="margin-top: 20px; color: green;">
-            {{ session('message') }}
+            </a>
         </div>
-    @endif
 
+        <div class="verify__resend-area">
+            <form method="POST" action="{{ route('verification.send') }}" class="verify__form">
+                @csrf
+                <button type="submit" class="verify__resend-button">
+                    認証メールを再送する
+                </button>
+            </form>
+        </div>
+
+        @if (session('message'))
+            <div class="verify__status">
+                {{ session('message') }}
+            </div>
+        @endif
+
+    </div>
 </div>
 @endsection
