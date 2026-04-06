@@ -193,14 +193,9 @@
    ・提出要件のPC幅に合わせて少し整える
 ======================================== */
 @media screen and (min-width: 87.5rem) and (max-width: 96.25rem) {
-    .verify {
+    .verify__inner {
         padding-top: 5.5rem;
         /* PC幅では上余白を少しだけ広げる */
-    }
-
-    .verify__inner {
-        width: min(90%, 38rem);
-        /* 少しだけ横幅を広げる */
     }
 
     .verify__button-area {

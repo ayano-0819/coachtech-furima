@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MypageController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\PurchaseController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [ItemController::class, 'index'])
     ->name('items.index');
@@ -15,23 +15,22 @@ Route::get('/item/{item_id}', [ItemController::class, 'show'])
     ->name('items.show');
 
 Route::middleware('auth')->group(function () {
-
     // =======================
     // メール認証関連
     // =======================
 
     // メール認証誘導画面
     Route::get('/email/verify', function () {
-        return view('auth.verify-email');})
-            ->name('verification.notice');
+        return view('auth.verify-email');
+    })->name('verification.notice');
 
     // メール内リンククリック時（認証完了）
     Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
         $request->fulfill();
 
         // 認証後はプロフィール設定へ
-        return redirect()->route('mypage.profile.edit');})
-            ->middleware(['signed'])->name('verification.verify');
+        return redirect()->route('mypage.profile.edit');
+    })->middleware(['signed'])->name('verification.verify');
 
     // 認証メール再送
     Route::post('/email/verification-notification', function (Request $request) {
@@ -44,7 +43,6 @@ Route::middleware('auth')->group(function () {
     // メール認証済みユーザーのみ
     // =======================
     Route::middleware('verified')->group(function () {
-
         // マイページ表示
         Route::get('/mypage', [MypageController::class, 'show'])
             ->name('mypage');
@@ -66,7 +64,6 @@ Route::middleware('auth')->group(function () {
         // いいね機能
         Route::post('/item/{item_id}/like', [ItemController::class, 'like'])
             ->name('likes.store');
-
         Route::delete('/item/{item_id}/like', [ItemController::class, 'unlike'])
             ->name('likes.destroy');
 

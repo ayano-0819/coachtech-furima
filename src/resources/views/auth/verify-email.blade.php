@@ -3,7 +3,7 @@
 @section('title', 'メール認証')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth/verify-email.css?v=2') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/verify-email.css') }}">
 @endsection
 
 @section('header-nav')
@@ -39,9 +39,9 @@
         </div>
 
         @if (session('message'))
-            <div class="verify__status">
+            <p class="verify__status">
                 {{ session('message') }}
-            </div>
+            </p>
         @endif
 
     </div>

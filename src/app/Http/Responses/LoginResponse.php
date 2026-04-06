@@ -11,11 +11,11 @@ class LoginResponse implements LoginResponseContract
         $user = $request->user();
 
         // 未認証ならメール認証誘導画面へ
-        if ($user && ! $user->hasVerifiedEmail()) {
+        if (! $user->hasVerifiedEmail()) {
             return redirect()->route('verification.notice');
         }
 
         // 認証済みならトップ画面へ
-        return redirect()->intended('/');
+        redirect()->intended(route('items.index'));
     }
 }

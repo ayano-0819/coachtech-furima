@@ -3,12 +3,12 @@
 @section('title', '商品出品')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/items/create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/items/create.css') }}">
 @endsection
 
 @section('header-nav')
     <div class="header__center">
-        <form action="/" method="GET" class="header__search-form">
+        <form action="{{ route('items.index') }}" method="GET" class="header__search-form">
             <input
                 type="text"
                 name="keyword"
@@ -21,11 +21,11 @@
 
     <div class="header__right">
         @guest
-            <a href="/login" class="header__link">ログイン</a>
+            <a href="{{ route('login') }}" class="header__link">ログイン</a>
         @endguest
 
         @auth
-            <form method="POST" action="/logout" class="header__logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="header__logout-form">
                 @csrf
                 <button type="submit" class="header__link header__logout-button">ログアウト</button>
             </form>
@@ -41,11 +41,11 @@
     <div class="sell__inner">
         <h1 class="sell__title">商品の出品</h1>
 
-        <form action="/sell" method="POST" enctype="multipart/form-data" class="sell__form">
+        <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="sell__form">
             @csrf
 
             <div class="sell__section">
-                <label class="sell__label">商品画像</label>
+                <p class="sell__label">商品画像</p>
                 <div class="sell__image-box">
                     <label for="image" class="sell__image-button">画像を選択する</label>
                     <input type="file" name="image" id="image" class="sell__image-input">
@@ -77,15 +77,15 @@
                     <p class="sell__error">{{ $message }}</p>
                 @enderror
 
-                <label class="sell__label">商品の状態</label>
-                <select name="condition_id" class="sell__select">
-                    <option value="">選択してください</option>
-                    @foreach($conditions as $condition)
-                        <option value="{{ $condition->id }}" {{ old('condition_id') == $condition->id ? 'selected' : '' }}>
-                            {{ $condition->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <label for="condition_id" class="sell__label">商品の状態</label>
+                    <select id="condition_id" name="condition_id" class="sell__select">
+                        <option value="">選択してください</option>
+                        @foreach($conditions as $condition)
+                            <option value="{{ $condition->id }}" {{ old('condition_id') == $condition->id ? 'selected' : '' }}>
+                                {{ $condition->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 @error('condition_id')
                     <p class="sell__error">{{ $message }}</p>
                 @enderror
@@ -94,25 +94,47 @@
             <div class="sell__section">
                 <h2 class="sell__heading">商品名と説明</h2>
 
-                <label class="sell__label">商品名</label>
-                <input type="text" name="name" value="{{ old('name') }}" class="sell__input">
+                <label for="name" class="sell__label">商品名</label>
+                <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value="{{ old('name') }}"
+                    class="sell__input"
+                >
                 @error('name')
                     <p class="sell__error">{{ $message }}</p>
                 @enderror
 
-                <label class="sell__label">ブランド名</label>
-                <input type="text" name="brand_name" value="{{ old('brand_name') }}" class="sell__input">
+                <label for="brand_name" class="sell__label">ブランド名</label>
+                    <input
+                        id="brand_name"
+                        type="text"
+                        name="brand_name"
+                        value="{{ old('brand_name') }}"
+                        class="sell__input"
+                    >
 
-                <label class="sell__label">商品の説明</label>
-                <textarea name="description" class="sell__textarea">{{ old('description') }}</textarea>
+                <label for="description" class="sell__label">商品の説明</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    class="sell__textarea"
+                >{{ old('description') }}</textarea>
                 @error('description')
                     <p class="sell__error">{{ $message }}</p>
                 @enderror
 
-                <label class="sell__label">販売価格</label>
+                <label for="price" class="sell__label">販売価格</label>
                 <div class="sell__price-box">
                     <span class="sell__price-mark">¥</span>
-                    <input type="text" name="price" value="{{ old('price') }}" class="sell__input sell__input--price">
+                    <input
+                        id="price"
+                        type="text"
+                        name="price"
+                        value="{{ old('price') }}"
+                        class="sell__input sell__input--price"
+                    >
                 </div>
                 @error('price')
                     <p class="sell__error">{{ $message }}</p>

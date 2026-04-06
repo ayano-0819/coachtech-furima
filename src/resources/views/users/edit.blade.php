@@ -3,12 +3,12 @@
 @section('title', 'プロフィール設定')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/users/edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/users/edit.css') }}">
 @endsection
 
 @section('header-nav')
     <div class="header__center">
-        <form action="/" method="GET" class="header__search-form">
+        <form action="{{ route('items.index') }}" method="GET" class="header__search-form">
             <input
                 type="text"
                 name="keyword"
@@ -21,11 +21,11 @@
 
     <div class="header__right">
         @guest
-            <a href="/login" class="header__link">ログイン</a>
+            <a href="{{ route('login') }}" class="header__link">ログイン</a>
         @endguest
 
         @auth
-            <form method="POST" action="/logout" class="header__logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="header__logout-form">
                 @csrf
                 <button type="submit" class="header__link header__logout-button">ログアウト</button>
             </form>
@@ -41,7 +41,7 @@
     <div class="profile-setting__inner">
         <h1 class="profile-setting__title">プロフィール設定</h1>
 
-        <form action="{{ route('mypage.profile.update') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('mypage.profile.update') }}" method="POST" enctype="multipart/form-data" class="profile-setting__form">
             @csrf
 
             <div class="profile-setting__image-area">

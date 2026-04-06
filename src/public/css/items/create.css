@@ -221,6 +221,7 @@
     cursor: pointer;
     /* 指マーク */
 }
+
 /* ========================================
    カテゴリー一覧
    ・他の項目と左右端をそろえる
@@ -304,7 +305,7 @@
    カテゴリー選択時
    ・背景を赤、文字を白にする
 ======================================== */
-.sell__category-checkbox:checked+.sell__category-text {
+.sell__category-checkbox:checked + .sell__category-text {
     background-color: #ff5a5a;
     /* 背景赤 */
 

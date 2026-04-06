@@ -157,9 +157,6 @@
     font-weight: 700;
     /* ← これで細さ感消える */
 
-    font-weight: 700;
-        /* ← これで細さ感消える */
-
     cursor: pointer;
     /* 指カーソル */
 }
@@ -185,7 +182,7 @@
     margin-bottom: 1.5rem;
     /* 次の入力欄との距離 */
 
-    color: red;
+    color: #ff5a5a;
     /* エラーは赤 */
 
     font-size: 0.8rem;

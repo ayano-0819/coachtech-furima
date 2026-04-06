@@ -3,12 +3,12 @@
 @section('title', '住所の変更')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/purchase/address.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/purchase/address.css') }}">
 @endsection
 
 @section('header-nav')
     <div class="header__center">
-        <form action="/" method="GET" class="header__search-form">
+        <form action="{{ route('items.index') }}" method="GET" class="header__search-form">
             <input
                 type="text"
                 name="keyword"
@@ -21,11 +21,11 @@
 
     <div class="header__right">
         @guest
-            <a href="/login" class="header__link">ログイン</a>
+            <a href="{{ route('login') }}" class="header__link">ログイン</a>
         @endguest
 
         @auth
-            <form method="POST" action="/logout" class="header__logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="header__logout-form">
                 @csrf
                 <button type="submit" class="header__link header__logout-button">ログアウト</button>
             </form>

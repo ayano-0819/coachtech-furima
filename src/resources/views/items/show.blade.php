@@ -3,12 +3,12 @@
 @section('title', '商品詳細')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/items/show.css') }}?v=1">
+    <link rel="stylesheet" href="{{ asset('css/items/show.css') }}">
 @endsection
 
 @section('header-nav')
     <div class="header__center">
-        <form action="/" method="GET" class="header__search-form">
+        <form action="{{ route('items.index') }}" method="GET" class="header__search-form">
             <input
                 type="text"
                 name="keyword"
@@ -21,11 +21,11 @@
 
     <div class="header__right">
         @guest
-            <a href="/login" class="header__link">ログイン</a>
+            <a href="{{ route('login') }}" class="header__link">ログイン</a>
         @endguest
 
         @auth
-            <form method="POST" action="/logout" class="header__logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="header__logout-form">
                 @csrf
                 <button type="submit" class="header__link header__logout-button">ログアウト</button>
             </form>
@@ -47,7 +47,7 @@
                     class="item-detail__image"
                 >
 
-                @if ($item->is_sold)
+                @if($item->is_sold)
                     <span class="item-detail__sold">Sold</span>
                 @endif
             </div>
@@ -56,7 +56,9 @@
         <div class="item-detail__content">
             <h1 class="item-detail__name">{{ $item->name }}</h1>
 
-            <p class="item-detail__brand">{{ $item->brand_name }}</p>
+            @if($item->brand_name)
+                <p class="item-detail__brand">{{ $item->brand_name }}</p>
+            @endif
 
             <p class="item-detail__price">¥{{ number_format($item->price) }} <span class="item-detail__price-tax">（税込）</span></p>
 
@@ -69,7 +71,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="item-detail__icon-button">
-                                        <img src="{{ asset('images/heart-liked.png') }}" alt="いいね済み" class="item-detail__icon-image">
+                                        <img src="{{ asset('images/heart-liked.png') }}" alt="いいね解除" class="item-detail__icon-image">
                                     </button>
                                 </form>
                             @else

@@ -3,12 +3,12 @@
 @section('title', 'マイページ')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/users/show.css') }}">
 @endsection
 
 @section('header-nav')
     <div class="header__center">
-        <form action="/" method="GET" class="header__search-form">
+        <form action="{{ route('items.index') }}" method="GET" class="header__search-form">
             <input
                 type="text"
                 name="keyword"
@@ -21,11 +21,11 @@
 
     <div class="header__right">
         @guest
-            <a href="/login" class="header__link">ログイン</a>
+            <a href="{{ route('login') }}" class="header__link">ログイン</a>
         @endguest
 
         @auth
-            <form method="POST" action="/logout" class="header__logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="header__logout-form">
                 @csrf
                 <button type="submit" class="header__link header__logout-button">ログアウト</button>
             </form>
@@ -39,7 +39,6 @@
 @section('content')
 <div class="mypage">
 
-    <!-- プロフィール -->
     <div class="mypage__profile">
         <div class="mypage__profile-left">
             <div class="mypage__icon">
@@ -51,7 +50,7 @@
             </div>
 
             <h2 class="mypage__name">
-                {{ $user->name ?? 'ユーザー名' }}
+                {{ $user->name }}
             </h2>
         </div>
 
@@ -62,7 +61,6 @@
         </div>
     </div>
 
-    <!-- タブ -->
     <div class="mypage__tabs">
         <a
             href="{{ route('mypage') }}?page=sell"
@@ -79,7 +77,6 @@
         </a>
     </div>
 
-    <!-- 商品一覧 -->
     <div class="mypage__items">
         @if(request('page', 'sell') === 'sell')
             <div class="mypage__item-list">

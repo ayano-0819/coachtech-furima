@@ -3,7 +3,7 @@
 @section('title', 'ログイン')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
 @endsection
 
 @section('header-nav')
@@ -21,7 +21,7 @@
                 <label for="email" class="login__label">メールアドレス</label>
                 <input
                     id="email"
-                    type="text"
+                    type="email"
                     name="email"
                     value="{{ old('email') }}"
                     class="login__input"
@@ -48,7 +48,7 @@
         </form>
 
         <p class="login__register">
-            <a href="/register" class="login__register-link">会員登録はこちら</a>
+            <a href="{{ route('register') }}" class="login__register-link">会員登録はこちら</a>
         </p>
     </div>
 </div>

@@ -3,12 +3,12 @@
 @section('title', '商品購入')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/purchase/create.css') }}?v=2">
+    <link rel="stylesheet" href="{{ asset('css/purchase/create.css') }}">
 @endsection
 
 @section('header-nav')
     <div class="header__center">
-        <form action="/" method="GET" class="header__search-form">
+        <form action="{{ route('items.index') }}" method="GET" class="header__search-form">
             <input
                 type="text"
                 name="keyword"
@@ -21,11 +21,11 @@
 
     <div class="header__right">
         @guest
-            <a href="/login" class="header__link">ログイン</a>
+            <a href="{{ route('login') }}" class="header__link">ログイン</a>
         @endguest
 
         @auth
-            <form method="POST" action="/logout" class="header__logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="header__logout-form">
                 @csrf
                 <button type="submit" class="header__link header__logout-button">ログアウト</button>
             </form>
@@ -58,9 +58,9 @@
 
             <form action="{{ route('purchase.create', ['item_id' => $item->id]) }}" method="GET" class="purchase__payment-form">
                 <div class="purchase__section">
-                    <h2 class="purchase__label">支払い方法</h2>
+                    <label for="payment_method" class="purchase__label">支払い方法</label>
 
-                    <select name="payment_method" class="purchase__select" onchange="this.form.submit()">
+                    <select id="payment_method" name="payment_method" class="purchase__select" onchange="this.form.submit()">
                         <option value="">選択してください</option>
                         <option value="convenience" {{ request('payment_method') === 'convenience' ? 'selected' : '' }}>
                             コンビニ支払い

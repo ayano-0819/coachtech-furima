@@ -176,14 +176,6 @@
     border-radius: 50%;
 }
 
-
-/* アクティブタブ */
-.mypage__tab--active {
-    color: #ff0000;
-    font-weight: 700;
-}
-
-
 /* 商品がないときのメッセージ */
 .mypage__empty-message {
     font-size: 1rem;

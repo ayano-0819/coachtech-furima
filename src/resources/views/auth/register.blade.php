@@ -3,7 +3,7 @@
 @section('title', '会員登録')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
 @endsection
 
 @section('header-nav')
@@ -72,7 +72,7 @@
         </form>
 
         <p class="register__login">
-            <a href="/login" class="register__login-link">ログインはこちら</a>
+            <a href="{{ route('login') }}" class="register__login-link">ログインはこちら</a>
         </p>
     </div>
 </div>
