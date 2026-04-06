@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('item_id')
                     ->constrained()
                     ->onDelete('cascade')
-                    ->unique(); // 1商品1購入
+                    ->unique();
 
             $table->unsignedTinyInteger('payment_method');
             $table->string('postal_code');
