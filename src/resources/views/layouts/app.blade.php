@@ -8,21 +8,24 @@
 </head>
 <body>
 
-<header class="header">
-    <div class="header__inner">
-        <div class="header__left">
-            <a href="{{ route('items.index') }}" class="header__logo">
-                <img src="{{ asset('images/header-logo.png') }}" alt="COACHTECHのロゴ">
-            </a>
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__left">
+                <a href="{{ route('items.index') }}" class="header__logo">
+                    <img
+                        src="{{ asset('images/header-logo.png') }}"
+                        alt="COACHTECHのロゴ"
+                    >
+                </a>
+            </div>
+
+            @yield('header-nav')
         </div>
+    </header>
 
-        @yield('header-nav')
-    </div>
-</header>
-
-<main class="main">
-    @yield('content')
-</main>
+    <main class="main">
+        @yield('content')
+    </main>
 
 </body>
 </html>

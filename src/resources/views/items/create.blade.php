@@ -37,47 +37,54 @@
 @endsection
 
 @section('content')
-<div class="sell">
-    <div class="sell__inner">
-        <h1 class="sell__title">商品の出品</h1>
+    <div class="sell">
+        <div class="sell__inner">
+            <h1 class="sell__title">商品の出品</h1>
 
-        <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="sell__form">
-            @csrf
+            <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="sell__form">
+                @csrf
 
-            <div class="sell__section">
-                <p class="sell__label">商品画像</p>
-                <div class="sell__image-box">
-                    <label for="image" class="sell__image-button">画像を選択する</label>
-                    <input type="file" name="image" id="image" class="sell__image-input">
+                <div class="sell__section">
+                    <p class="sell__label">商品画像</p>
+                    <div class="sell__image-box">
+                        <label for="image" class="sell__image-button">画像を選択する</label>
+                        <input
+                            type="file"
+                            name="image"
+                            id="image"
+                            class="sell__image-input"
+                        >
+                    </div>
+                    @error('image')
+                        <p class="sell__error">{{ $message }}</p>
+                    @enderror
                 </div>
-                @error('image')
-                    <p class="sell__error">{{ $message }}</p>
-                @enderror
-            </div>
 
-            <div class="sell__section">
-                <h2 class="sell__heading">商品の詳細</h2>
+                <div class="sell__section">
+                    <h2 class="sell__heading">商品の詳細</h2>
 
-                <label class="sell__label sell__label--category">カテゴリー</label>
-                <div class="sell__category-list">
-                    @foreach($categories as $category)
-                        <label class="sell__category-item">
-                            <input
-                                type="checkbox"
-                                name="categories[]"
-                                value="{{ $category->id }}"
-                                class="sell__category-checkbox"
-                                {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}
-                            >
-                            <span class="sell__category-text">{{ $category->name }}</span>
-                        </label>
-                    @endforeach
-                </div>
-                @error('categories')
-                    <p class="sell__error">{{ $message }}</p>
-                @enderror
+                    <p class="sell__label sell__label--category">カテゴリー</p>
 
-                <label for="condition_id" class="sell__label">商品の状態</label>
+                    <div class="sell__category-list">
+                        @foreach($categories as $category)
+                            <label class="sell__category-item">
+                                <input
+                                    type="checkbox"
+                                    name="categories[]"
+                                    value="{{ $category->id }}"
+                                    class="sell__category-checkbox"
+                                    {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}
+                                >
+                                <span class="sell__category-text">{{ $category->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+
+                    @error('categories')
+                        <p class="sell__error">{{ $message }}</p>
+                    @enderror
+
+                    <label for="condition_id" class="sell__label">商品の状態</label>
                     <select id="condition_id" name="condition_id" class="sell__select">
                         <option value="">選択してください</option>
                         @foreach($conditions as $condition)
@@ -86,27 +93,27 @@
                             </option>
                         @endforeach
                     </select>
-                @error('condition_id')
-                    <p class="sell__error">{{ $message }}</p>
-                @enderror
-            </div>
+                    @error('condition_id')
+                        <p class="sell__error">{{ $message }}</p>
+                    @enderror
+                </div>
 
-            <div class="sell__section">
-                <h2 class="sell__heading">商品名と説明</h2>
+                <div class="sell__section">
+                    <h2 class="sell__heading">商品名と説明</h2>
 
-                <label for="name" class="sell__label">商品名</label>
-                <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value="{{ old('name') }}"
-                    class="sell__input"
-                >
-                @error('name')
-                    <p class="sell__error">{{ $message }}</p>
-                @enderror
+                    <label for="name" class="sell__label">商品名</label>
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        class="sell__input"
+                    >
+                    @error('name')
+                        <p class="sell__error">{{ $message }}</p>
+                    @enderror
 
-                <label for="brand_name" class="sell__label">ブランド名</label>
+                    <label for="brand_name" class="sell__label">ブランド名</label>
                     <input
                         id="brand_name"
                         type="text"
@@ -115,34 +122,34 @@
                         class="sell__input"
                     >
 
-                <label for="description" class="sell__label">商品の説明</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    class="sell__textarea"
-                >{{ old('description') }}</textarea>
-                @error('description')
-                    <p class="sell__error">{{ $message }}</p>
-                @enderror
+                    <label for="description" class="sell__label">商品の説明</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        class="sell__textarea"
+                    >{{ old('description') }}</textarea>
+                    @error('description')
+                        <p class="sell__error">{{ $message }}</p>
+                    @enderror
 
-                <label for="price" class="sell__label">販売価格</label>
-                <div class="sell__price-box">
-                    <span class="sell__price-mark">¥</span>
-                    <input
-                        id="price"
-                        type="text"
-                        name="price"
-                        value="{{ old('price') }}"
-                        class="sell__input sell__input--price"
-                    >
+                    <label for="price" class="sell__label">販売価格</label>
+                    <div class="sell__price-box">
+                        <span class="sell__price-mark">¥</span>
+                        <input
+                            id="price"
+                            type="text"
+                            name="price"
+                            value="{{ old('price') }}"
+                            class="sell__input sell__input--price"
+                        >
+                    </div>
+                    @error('price')
+                        <p class="sell__error">{{ $message }}</p>
+                    @enderror
                 </div>
-                @error('price')
-                    <p class="sell__error">{{ $message }}</p>
-                @enderror
-            </div>
 
-            <button type="submit" class="sell__submit">出品する</button>
-        </form>
+                <button type="submit" class="sell__submit">出品する</button>
+            </form>
+        </div>
     </div>
-</div>
 @endsection

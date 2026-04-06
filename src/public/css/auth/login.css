@@ -1,258 +1,97 @@
-/* ========================================
-   ログイン画面 全体
-   ・ヘッダーの下から余白を取る
-======================================== */
 .login {
-    min-height: calc(100vh - 4.375rem);
-    /* 画面の高さ全体からヘッダー分を引いた高さを最低限確保する
-       4.375rem = 70px くらい */
-
-    padding: 3rem 1rem;
-    /* 上下3rem、左右1remの余白をつける
-       スマホや少し狭い画面でも左右が詰まりすぎないようにする */
+   min-height: calc(100vh - 4.375rem);
+   padding: 3rem 1rem;
 }
 
-
-/* ========================================
-   ログインフォームを囲む中央コンテナ
-   ・幅を制御する
-   ・中央に寄せる
-======================================== */
 .login__inner {
-    width: min(90%, 32rem);
-    /* 基本は画面幅の90%を使う
-       ただし広くなりすぎないように最大32remまでにする */
-
-    margin: 0 auto;
-    /* 左右の余白を自動にして中央寄せする */
+   width: min(90%, 32rem);
+   margin: 0 auto;
 }
 
-
-/* ========================================
-   タイトル
-   ・「ログイン」を中央表示する
-======================================== */
 .login__title {
-    margin: 0 0 2.5rem;
-    /* 上0、左右0、下2.5rem
-       タイトル下に余白をつける */
-
-    font-size: 2rem;
-    /* タイトル文字サイズ */
-
-    font-weight: 700;
-    /* 太字 */
-
-    line-height: 1.4;
-    /* 行の高さ */
-
-    text-align: center;
-    /* 中央揃え */
-
-    color: #000;
-    /* 文字色を黒にする */
+   margin: 0 0 2.5rem;
+   font-size: 2rem;
+   font-weight: 700;
+   line-height: 1.4;
+   text-align: center;
+   color: #000;
 }
 
-
-/* ========================================
-   フォーム全体
-   ・コンテナ幅いっぱいを使う
-======================================== */
 .login__form {
-    width: 100%;
-    /* 親要素いっぱいに広げる */
+   width: 100%;
 }
 
-
-/* ========================================
-   入力欄1セット分
-   ・ラベル + input + エラー文 のまとまり
-======================================== */
 .login__group {
-    margin-bottom: 1.75rem;
-    /* 各入力セットの下に余白をつける
-       「メールアドレス」と「パスワード」の間を空ける */
+   margin-bottom: 1.75rem;
 }
 
-
-/* ========================================
-   ラベル
-   ・「メールアドレス」「パスワード」
-======================================== */
 .login__label {
-    display: block;
-    /* label をブロック要素にして改行させる */
-
-    margin-bottom: 0.5rem;
-    /* ラベルと入力欄の間に少し余白を入れる */
-
-    font-size: 1rem;
-    /* 文字サイズ */
-
-    font-weight: 700;
-    /* 太字 */
-
-    line-height: 1.4;
-    /* 行の高さ */
-
-    color: #000;
-    /* 文字色 */
+   display: block;
+   margin-bottom: 0.5rem;
+   font-size: 1rem;
+   font-weight: 700;
+   line-height: 1.4;
+   color: #000;
 }
 
-
-/* ========================================
-   入力欄
-   ・メールアドレス入力欄
-   ・パスワード入力欄
-======================================== */
 .login__input {
-    width: 100%;
-    /* 親要素の幅いっぱいにする */
-
-    min-height: 2.75rem;
-    /* 入力欄の高さをそろえる */
-
-    padding: 0 0.75rem;
-    /* 左右に余白を入れる
-       上下は高さで管理するので不要 */
-
-    border: 0.0625rem solid #bfbfbf;
-    /* 薄いグレーの枠線をつける */
-
-    background-color: #fff;
-    /* 背景を白にする */
-
-    font-size: 1rem;
-    /* 入力文字サイズ */
-
-    color: #000;
-    /* 入力文字色 */
-
-    box-sizing: border-box;
-    /* padding と border を width に含めて計算する
-       これがないと width:100% でも少しはみ出すことがある */
+   width: 100%;
+   min-height: 2.75rem;
+   padding: 0 0.75rem;
+   border: 0.0625rem solid #bfbfbf;
+   background-color: #fff;
+   font-size: 1rem;
+   color: #000;
+   box-sizing: border-box;
 }
 
-
-/* ========================================
-   入力欄フォーカス時
-   ・入力中の欄がわかるようにする
-======================================== */
 .login__input:focus {
-    outline: none;
-    /* ブラウザ標準の青い外枠を消す */
-
-    border-color: #000;
-    /* 代わりに枠線を黒くして選択中とわかるようにする */
+   outline: none;
+   border-color: #000;
 }
 
-
-/* ========================================
-   エラーメッセージ
-   ・バリデーションエラー表示用
-======================================== */
 .login__error {
-    margin: 0.4rem 0 0;
-    /* 上に少し余白をつける
-       入力欄のすぐ下に表示される */
-
-    color: #ff0000;
-    /* 赤文字にする */
-
-    font-size: 0.8rem;
-    /* 少し小さめの文字サイズ */
-
-    line-height: 1.4;
-    /* 行の高さ */
+   margin: 0.4rem 0 0;
+   color: #ff0000;
+   font-size: 0.8rem;
+   line-height: 1.4;
 }
 
-
-/* ========================================
-   ログインボタン
-   ・赤いボタンを横幅いっぱいで表示する
-======================================== */
 .login__button {
-    width: 100%;
-    /* 横幅いっぱい */
-
-    min-height: 3rem;
-    /* ボタンの高さ */
-
-    margin-top: 1.5rem;
-    /* 上に余白をつけて入力欄と少し離す */
-
-    border: none;
-    /* 枠線を消す */
-
-    border-radius: 0.25rem;
-    /* 少し角を丸くする */
-
-    background-color: #ff5a5a;
-    /* 赤背景 */
-
-    color: #fff;
-    /* 白文字 */
-
-    font-size: 1rem;
-    /* 文字サイズ */
-
-    font-weight: 700;
-    /* 太字 */
-
-    line-height: 1;
-    /* 行高を詰める */
-
-    cursor: pointer;
-    /* マウスを乗せた時に指マークにする */
+   width: 100%;
+   min-height: 3rem;
+   margin-top: 1.5rem;
+   border: none;
+   border-radius: 0.25rem;
+   background-color: #ff5a5a;
+   color: #fff;
+   font-size: 1rem;
+   font-weight: 700;
+   line-height: 1;
+   cursor: pointer;
 }
 
-
-/* ========================================
-   会員登録リンク全体
-   ・リンクを中央に配置する
-======================================== */
 .login__register {
-    margin-top: 1.5rem;
-    /* ボタンの下に余白をつける */
-
-    text-align: center;
-    /* 中央揃え */
+   margin-top: 1.5rem;
+   text-align: center;
 }
 
-
-/* ========================================
-   会員登録リンク
-   ・青いリンク文字にする
-======================================== */
 .login__register-link {
-    color: #0073cc;
-    /* 青系の文字色 */
-
-    font-size: 0.9rem;
-    /* 少し小さめの文字サイズ */
-
-    text-decoration: none;
-    /* 下線を消す */
+   color: #0073cc;
+   font-size: 0.9rem;
+   text-decoration: none;
 }
 
-
-/* ========================================
-   PC幅 1400px～1540px の間で微調整
-   ・提出要件のPC幅に合わせて少し整える
-======================================== */
 @media screen and (min-width: 87.5rem) and (max-width: 96.25rem) {
-    .login {
-        padding-top: 3.5rem;
-        /* PC幅では少し上余白を広げて窮屈さを減らす */
-    }
+   .login {
+      padding-top: 3.5rem;
+   }
 
-    .login__inner {
-        width: min(90%, 34rem);
-        /* 少しだけフォーム幅を広げる */
-    }
+   .login__inner {
+      width: min(90%, 34rem);
+   }
 
-    .login__title {
-        margin-bottom: 2.75rem;
-        /* タイトル下の余白を少し広げる */
-    }
+   .login__title {
+      margin-bottom: 2.75rem;
+   }
 }

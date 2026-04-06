@@ -18,19 +18,16 @@ class FortifyServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // 会員登録直後の遷移先を /mypage/profile にするため
         $this->app->singleton(
             RegisterResponseContract::class,
             RegisterResponse::class
         );
 
-        // 未認証ユーザーがログインした直後はメール認証誘導画面へ飛ばすため
         $this->app->singleton(
             LoginResponseContract::class,
             LoginResponse::class
         );
 
-        // Fortifyが使うLoginRequestをあなたのLoginRequestに差し替える
         $this->app->bind(
             \Laravel\Fortify\Http\Requests\LoginRequest::class,
             LoginRequest::class
@@ -39,20 +36,16 @@ class FortifyServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // 会員登録（Fortify）
         Fortify::createUsersUsing(CreateNewUser::class);
 
-        // 会員登録画面
         Fortify::registerView(function () {
             return view('auth.register');
         });
 
-        // ログイン画面
         Fortify::loginView(function () {
             return view('auth.login');
         });
 
-        // ログアウト後はログイン画面へ
         $this->app->instance(
             \Laravel\Fortify\Contracts\LogoutResponse::class,
             new class implements \Laravel\Fortify\Contracts\LogoutResponse {
@@ -63,7 +56,6 @@ class FortifyServiceProvider extends ServiceProvider
             }
         );
 
-        // ログイン試行回数制限
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 

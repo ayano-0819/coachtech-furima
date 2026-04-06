@@ -1,561 +1,230 @@
-/* ========================================
-   出品画面全体の外枠
-   ・画面中央に配置する
-   ・PC幅 1400px～1540px で見た時に整いやすい幅にする
-   ・購入画面と同じく width は % と rem ベースで調整する
-======================================== */
 .sell {
     width: min(95%, 48rem);
-    /* 横幅：基本95%、ただし最大でも48remまで */
-
     margin: 0 auto;
-    /* 要素を中央寄せする */
-
     padding: 3.5rem 0 5rem;
-    /* 上・左右・下の余白 */
 }
 
-
-/* ========================================
-   内側コンテナ
-   ・フォーム全体をまとめる
-   ・width: 100% を入れておくと中身が安定しやすい
-======================================== */
 .sell__inner {
     width: 100%;
-    /* 親要素の横幅いっぱいを使う */
 }
 
-
-/* ========================================
-   画面タイトル
-   ・「商品の出品」を中央に配置する
-   ・見本に近づくよう少し大きめにする
-======================================== */
 .sell__title {
     margin: 0 0 3.5rem;
-    /* 下に余白をつける */
-
     font-size: 2rem;
-    /* タイトル文字サイズ */
-
     font-weight: 700;
-    /* 太字 */
-
     line-height: 1.4;
-    /* 行の高さ */
-
     text-align: center;
-    /* 中央寄せ */
-
     color: #000;
-    /* 文字色 */
 }
 
-
-/* ========================================
-   フォーム本体
-   ・幅いっぱいを使う
-======================================== */
 .sell__form {
     width: 100%;
-    /* 横幅いっぱい */
 }
 
-
-/* ========================================
-   各セクション
-   ・商品画像
-   ・商品の詳細
-   ・商品名と説明
-   などのまとまりごとに余白を取る
-======================================== */
 .sell__section {
     margin-bottom: 3.5rem;
-    /* セクション同士の間隔 */
 }
 
-
-/* ========================================
-   セクション見出し
-   ・「商品の詳細」「商品名と説明」など
-   ・下線を引いて見本に近づける
-======================================== */
 .sell__heading {
     margin: 0 0 2rem;
-    /* 下に余白を作る */
-
     padding-bottom: 0.75rem;
-    /* 下線との間隔を少し空ける */
-
     border-bottom: 0.0625rem solid #bfbfbf;
-    /* 下線 */
-
     font-size: 1.8rem;
-    /* 見出し文字サイズ */
-
     font-weight: 700;
-    /* 太字 */
-
     line-height: 1.4;
-    /* 行の高さ */
-
     color: #5f5f5f;
-    /* 少しグレー寄り */
 }
 
-
-/* ========================================
-   ラベル
-   ・「商品画像」「カテゴリー」「商品名」など
-   ・各入力欄の上に表示する
-======================================== */
 .sell__label {
     display: block;
-    /* 改行されるようにする */
-
     margin-top: 1.5rem;
-    /* ← 上余白を統一 */
-
     margin-bottom: 0.75rem;
-    /* 入力欄との間隔 */
-
     font-size: 1.5rem;
-    /* ラベル文字サイズ */
-
     font-weight: 700;
-    /* 太字 */
-
     line-height: 1.4;
-    /* 行の高さ */
-
     color: #000;
-    /* 文字色 */
 }
 
 .sell__label--category {
     margin-bottom: 1.5rem;
 }
 
-/* ========================================
-   画像アップロード枠
-   ・枠の中に「画像を選択する」ボタンを中央配置する
-   ・白背景＋薄い枠線で見本に寄せる
-======================================== */
 .sell__image-box {
     width: 100%;
-    /* 横幅いっぱい */
-
     min-height: 9.375rem;
-    /* 高さを確保する */
-
     border: 0.0625rem solid #d9d9d9;
-    /* 薄い枠線 */
-
     background-color: #fff;
-    /* 背景白 */
-
     display: flex;
-    /* 中央寄せのため flex を使う */
-
     align-items: center;
-    /* 縦方向中央 */
-
     justify-content: center;
-    /* 横方向中央 */
 }
 
-
-/* ========================================
-   ファイル選択 input
-   ・ブラウザ標準の見た目を消す
-   ・label をボタン代わりに使う
-======================================== */
 .sell__image-input {
     display: none;
-    /* 非表示にする */
 }
 
-
-/* ========================================
-   「画像を選択する」ボタン
-   ・赤い枠線のボタン風デザインにする
-======================================== */
 .sell__image-button {
     display: inline-flex;
-    /* 文字を中央に寄せやすくする */
-
     align-items: center;
-    /* 縦中央 */
-
     justify-content: center;
-    /* 横中央 */
-
     min-height: 2.25rem;
-    /* ボタン高さ */
-
     padding: 0.5rem 1.25rem;
-    /* 内側余白 */
-
     border: 0.0625rem solid #ff5a5a;
-    /* 赤枠 */
-
     border-radius: 0.5rem;
-    /* 少し角を丸くする */
-
     background-color: #fff;
-    /* 背景白 */
-
     color: #ff5a5a;
-    /* 文字色 */
-
     font-size: 0.875rem;
-    /* 文字サイズ */
-
     font-weight: 700;
-    /* 太字 */
-
     line-height: 1;
-    /* 行高を詰める */
-
     cursor: pointer;
-    /* 指マーク */
 }
 
-/* ========================================
-   カテゴリー一覧
-   ・他の項目と左右端をそろえる
-   ・1行6個で等間隔に並べる
-======================================== */
 .sell__category-list {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    /* 6列で並べる */
-
     column-gap: 0.75rem;
-    /* 横の間隔 */
-
     row-gap: 0.875rem;
-    /* 縦の間隔 */
-
     width: 100%;
-    /* 他の入力欄と同じ横幅いっぱい */
-
     margin-bottom: 2rem;
-    /* 下の「商品の状態」との間隔 */
 }
 
-
-/* ========================================
-   カテゴリー1つ分
-   ・各列の幅いっぱいを使う
-======================================== */
 .sell__category-item {
     position: relative;
     display: block;
     width: 100%;
-    /* 1列分いっぱい */
     cursor: pointer;
 }
 
-
-/* ========================================
-   実際の checkbox
-   ・見た目は消して checked 状態だけ使う
-======================================== */
 .sell__category-checkbox {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
-
-/* ========================================
-   カテゴリーの見た目部分
-   ・ボタンの大きさを統一する
-   ・各列の幅いっぱいに広げる
-======================================== */
 .sell__category-text {
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 100%;
     min-height: 2rem;
-    /* 高さをそろえる */
-
     padding: 0.25rem 0.5rem;
-    /* 内側余白 */
-
     border: 0.0625rem solid #ff5a5a;
     border-radius: 9999px;
-
     background-color: #fff;
     color: #ff5a5a;
-
     font-size: 0.75rem;
     font-weight: 400;
     line-height: 1.4;
     text-align: center;
     white-space: nowrap;
-    /* 改行させない */
 }
 
-/* ========================================
-   カテゴリー選択時
-   ・背景を赤、文字を白にする
-======================================== */
 .sell__category-checkbox:checked + .sell__category-text {
     background-color: #ff5a5a;
-    /* 背景赤 */
-
     color: #fff;
-    /* 文字白 */
 }
 
-
-/* ========================================
-   共通入力欄
-   ・input / select / textarea の基本見た目をそろえる
-======================================== */
 .sell__input,
 .sell__select,
 .sell__textarea {
     width: 100%;
-    /* 横幅いっぱい */
-
     border: 0.0625rem solid #bfbfbf;
-    /* 薄いグレー枠 */
-
     background-color: #fff;
-    /* 背景白 */
-
     box-sizing: border-box;
-    /* 枠線込みで幅計算する */
-
     font-size: 1rem;
-    /* 文字サイズ */
-
     color: #000;
-    /* 文字色 */
 }
 
-
-/* ========================================
-   input / select
-   ・高さをそろえる
-======================================== */
 .sell__input,
 .sell__select {
     min-height: 2.8125rem;
-    /* 高さをそろえる */
-
     padding: 0 0.75rem;
-    /* 左右余白 */
 }
 
-
-/* ========================================
-   textarea
-   ・商品説明用に少し高さを持たせる
-======================================== */
 .sell__textarea {
     min-height: 7.8125rem;
-    /* 最低限の高さ */
-
     padding: 0.75rem;
-    /* 内側余白 */
-
     resize: vertical;
-    /* 縦方向のみサイズ変更可 */
 }
 
-
-/* ========================================
-   select
-   ・ブラウザ標準の矢印を消す
-   ・購入画面と同じく background-image で ▼ を作る
-======================================== */
 .sell__select {
     appearance: none;
-    /* 標準の▼を消す */
     -webkit-appearance: none;
-    /* Safari対策 */
     -moz-appearance: none;
-    /* Firefox対策 */
 
     background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5z'/></svg>");
-    /* カスタム矢印 */
 
     background-repeat: no-repeat;
-    /* 繰り返さない */
 
     background-position: right 0.5rem center;
-    /* 右側中央に配置 */
 
     padding-right: 2rem;
-    /* 矢印と文字が重ならないようにする */
 }
 
-
-/* ========================================
-   価格入力欄の親
-   ・¥ を内側左に固定表示するための基準にする
-======================================== */
 .sell__price-box {
     position: relative;
-    /* 子要素 absolute の基準 */
 }
 
-
-/* ========================================
-   ¥ マーク
-   ・販売価格 input の左側に表示する
-======================================== */
 .sell__price-mark {
     position: absolute;
-    /* input の中っぽい位置に置く */
-
     top: 50%;
-    /* 縦中央基準 */
-
     left: 0.75rem;
-    /* 左から少し内側 */
-
     transform: translateY(-50%);
-    /* ぴったり中央に合わせる */
-
     font-size: 1rem;
-    /* 文字サイズ */
-
     font-weight: 700;
-    /* 太字 */
-
     color: #000;
-    /* 文字色 */
-
     line-height: 1;
-    /* 行高を詰める */
 }
 
-
-/* ========================================
-   価格入力欄
-   ・¥ と文字が重ならないよう左余白を増やす
-======================================== */
 .sell__input--price {
     padding-left: 1.75rem;
-    /* 左側に余白を追加する */
 }
 
-
-/* ========================================
-   送信ボタン
-   ・見本の赤いボタンに近づける
-   ・横幅いっぱいで表示する
-======================================== */
 .sell__submit {
     display: flex;
-    /* 中央寄せしやすくする */
-
     justify-content: center;
-    /* 横中央 */
-
     align-items: center;
-    /* 縦中央 */
-
     width: 100%;
-    /* 横幅いっぱい */
-
     min-height: 3.5rem;
-    /* ボタン高さ */
-
     margin-top: 4.5rem;
-    /* 上に余白を取る */
-
     padding: 0.75rem 1rem;
-    /* 内側余白 */
-
     border: none;
-    /* 枠線を消す */
-
     border-radius: 0.25rem;
-    /* 少し角丸 */
-
     background-color: #ff5a5a;
-    /* 赤背景 */
-
     color: #fff;
-    /* 白文字 */
-
     font-size: 1rem;
-    /* 文字サイズ */
-
     font-weight: 700;
-    /* 太字 */
-
     line-height: 1;
-    /* 行高を詰める */
-
     cursor: pointer;
-    /* 指マーク */
 }
 
-
-/* ========================================
-   バリデーションエラー
-   ・各入力欄の下に表示する
-======================================== */
 .sell__error {
     margin: 0.5rem 0 0;
-    /* 上に少し余白 */
-
     color: #ff0000;
-    /* 赤文字 */
-
     font-size: 0.875rem;
-    /* 少し小さめ */
 }
 
-
-/* ========================================
-   フォーカス時
-   ・入力中の欄がわかりやすいようにする
-======================================== */
 .sell__input:focus,
 .sell__select:focus,
 .sell__textarea:focus {
     outline: none;
-    /* 標準の青い枠を消す */
-
     border-color: #000;
-    /* 枠線を濃くする */
 }
 
-
-/* ========================================
-   PC幅 1400px～1540px の間で微調整
-   ・提出要件のPC幅に合わせて少し整える
-   ・あとで数値を触りやすいように rem で書く
-======================================== */
 @media screen and (min-width: 87.5rem) and (max-width: 96.25rem) {
     .sell {
         width: min(94%, 49rem);
-        /* 全体幅を少しだけ広げる */
     }
 
     .sell__title {
         margin-bottom: 3.75rem;
-        /* タイトル下の余白を少し広げる */
     }
 
     .sell__section {
         margin-bottom: 3.75rem;
-        /* セクション間を少し広げる */
     }
 
     .sell__image-box {
         min-height: 10rem;
-        /* 画像枠を少しだけ大きくする */
     }
 }
