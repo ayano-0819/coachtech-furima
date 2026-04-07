@@ -84,7 +84,7 @@ php artisan db:seed
 ### 10. ストレージリンクの作成
 ```bash
 php artisan storage:link
----
+```
 
 ## 使用技術
 - PHP 8.1.34
