@@ -121,6 +121,10 @@
                             {{ session('address', auth()->user()->address) }}
                             {{ session('building', auth()->user()->building) }}
                         </p>
+
+                        @error('shipping_address')
+                            <p class="purchase__error purchase__error--address">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 

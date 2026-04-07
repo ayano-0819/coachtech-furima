@@ -75,8 +75,10 @@ class PurchaseController extends Controller
         $building = session('building', $user->building);
 
         if (empty($postalCode) || empty($address)) {
-            return redirect()->route('purchase.address.edit', ['item_id' => $item->id])
-                ->with('error', '配送先を入力してください。');
+            return redirect()->route('purchase.address.edit', [
+                'item_id' => $item->id,
+                'payment_method' => $request->payment_method,
+            ])->with('error', '配送先を入力してください。');
         }
 
         $paymentMethod = $request->payment_method === 'card' ? 1 : 2;
