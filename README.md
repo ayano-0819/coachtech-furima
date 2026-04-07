@@ -32,24 +32,27 @@ cd coachtech-furima
 docker compose up -d --build
 ```
 
-### 4. Laravelのパッケージをインストール
+### 4. PHPコンテナにログインする
 ```bash
 docker compose exec php bash
+```
 
+### 5. Laravelのパッケージをインストール
+```bash
 composer install
 ```
 
-### 5. .envファイルを作成（PHPコンテナ内で入力）
+### 6. .envファイルを作成（PHPコンテナ内で入力）
 ```bash
 cp .env.example .env
 ```
 
-### 6. アプリケーションキーを生成（PHPコンテナ内で入力）
+### 7. アプリケーションキーを生成（PHPコンテナ内で入力）
 ```bash
 php artisan key:generate
 ```
 
-### 7. .envファイルを修正
+### 8. .envファイルを修正
 4で作成された「.env 」を以下のように修正する。
 ```env
 DB_CONNECTION=mysql
@@ -69,19 +72,24 @@ MAIL_FROM_ADDRESS="no-reply@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 
 MAIL_USERNAMEとMAIL_PASSWORDは環境に合わせて設定してください。
+
+STRIPE_KEY=
+STRIPE_SECRET=
+
+STRIPE_KEYとSTRIPE_SECRETは環境に合わせて設定してください。
 ```
 
-### 8. マイグレーション実行
+### 9. マイグレーション実行
 ```bash
 php artisan migrate
 ```
 
-### 9. シーディング実行
+### 10. シーディング実行
 ```bash
 php artisan db:seed
 ```
 
-### 10. ストレージリンクの作成
+### 11. ストレージリンクの作成
 ```bash
 php artisan storage:link
 ```
