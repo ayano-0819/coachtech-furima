@@ -58,6 +58,17 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="no-reply@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+MAIL_USERNAMEとMAIL_PASSWORDは環境に合わせて設定してください。
 ```
 
 ### 8. マイグレーション実行
@@ -70,6 +81,9 @@ php artisan migrate
 php artisan db:seed
 ```
 
+### 10. ストレージリンクの作成
+```bash
+php artisan storage:link
 ---
 
 ## 使用技術
@@ -79,6 +93,7 @@ php artisan db:seed
 - MySQL 8.0
 - Nginx 1.21
 - Docker 28.4.0
+- Stripe（決済処理用）
 - Mailtrap（メール認証確認用）
 
 ---
