@@ -10,9 +10,6 @@ class RegisterTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 名前が未入力の場合、バリデーションメッセージが表示される
-     */
     public function test_name_is_required_for_registration(): void
     {
         $response = $this->from('/register')->post('/register', [
@@ -28,9 +25,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /**
-     * メールアドレスが未入力の場合、バリデーションメッセージが表示される
-     */
     public function test_email_is_required_for_registration(): void
     {
         $response = $this->from('/register')->post('/register', [
@@ -46,9 +40,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /**
-     * パスワードが未入力の場合、バリデーションメッセージが表示される
-     */
     public function test_password_is_required_for_registration(): void
     {
         $response = $this->from('/register')->post('/register', [
@@ -64,9 +55,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /**
-     * パスワードが7文字以下の場合、バリデーションメッセージが表示される
-     */
     public function test_password_must_be_at_least_8_characters_for_registration(): void
     {
         $response = $this->from('/register')->post('/register', [
@@ -82,9 +70,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /**
-     * パスワード確認が一致しない場合、バリデーションメッセージが表示される
-     */
     public function test_password_confirmation_must_match_for_registration(): void
     {
         $response = $this->from('/register')->post('/register', [
@@ -100,9 +85,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    /**
-     * 全項目が正しく入力されている場合、会員情報が登録され、プロフィール設定画面へ遷移する
-     */
     public function test_user_can_register_and_redirect_to_profile_page(): void
     {
         $response = $this->post('/register', [

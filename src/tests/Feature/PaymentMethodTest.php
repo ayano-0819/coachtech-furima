@@ -12,9 +12,6 @@ class PaymentMethodTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 選択した支払い方法が小計画面に正しく反映される
-     */
     public function test_selected_payment_method_is_reflected_in_purchase_summary()
     {
         $user = User::factory()->create([

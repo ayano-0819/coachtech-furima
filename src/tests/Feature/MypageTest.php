@@ -13,9 +13,6 @@ class MypageTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * プロフィールページでユーザー情報と出品した商品一覧が表示される
-     */
     public function test_user_profile_displays_profile_image_name_and_selling_items()
     {
         $user = User::factory()->create([
@@ -58,9 +55,6 @@ class MypageTest extends TestCase
         $response->assertSee('出品商品2');
     }
 
-    /**
-     * プロフィールページで購入した商品一覧が表示される
-     */
     public function test_user_profile_displays_bought_items()
     {
         $buyer = User::factory()->create([

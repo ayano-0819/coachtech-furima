@@ -13,9 +13,6 @@ class MyListTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * いいねした商品だけが表示される
-     */
     public function test_only_liked_items_are_displayed_in_mylist(): void
     {
         $condition = Condition::create([
@@ -76,9 +73,6 @@ class MyListTest extends TestCase
         $response->assertDontSee('いいねしていない商品');
     }
 
-    /**
-     * 購入済み商品は「Sold」と表示される
-     */
     public function test_sold_label_is_displayed_for_sold_items_in_mylist(): void
     {
         $condition = Condition::create([
@@ -122,9 +116,6 @@ class MyListTest extends TestCase
         $response->assertSee('Sold');
     }
 
-    /**
-     * 未認証の場合は何も表示されない
-     */
     public function test_nothing_is_displayed_for_guest_in_mylist(): void
     {
         $condition = Condition::create([

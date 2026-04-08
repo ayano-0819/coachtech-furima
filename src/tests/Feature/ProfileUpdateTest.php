@@ -10,9 +10,6 @@ class ProfileUpdateTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * ユーザー情報変更画面で各項目の初期値が表示される
-     */
     public function test_profile_edit_page_displays_initial_values()
     {
         $user = User::factory()->create([
@@ -34,9 +31,6 @@ class ProfileUpdateTest extends TestCase
         $response->assertSee('storage/profiles/test-user.jpg');
     }
 
-    /**
-    * ユーザー情報を更新できる
-    */
     public function test_user_can_update_profile()
     {
         $user = User::factory()->create([

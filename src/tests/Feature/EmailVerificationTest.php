@@ -13,9 +13,6 @@ class EmailVerificationTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 会員登録後、認証メールが送信される
-     */
     public function test_verification_email_is_sent_after_registration()
     {
         Notification::fake();
@@ -36,9 +33,6 @@ class EmailVerificationTest extends TestCase
         Notification::assertSentTo($user, VerifyEmail::class);
     }
 
-    /**
-     * メール認証誘導画面に「認証はこちらから」ボタンが表示される
-     */
     public function test_verification_notice_page_displays_verification_button()
     {
         $user = User::factory()->unverified()->create();
@@ -49,9 +43,6 @@ class EmailVerificationTest extends TestCase
         $response->assertSee('認証はこちらから');
     }
 
-    /**
-     * メール認証完了後、プロフィール設定画面に遷移する
-     */
     public function test_verified_user_is_redirected_to_profile_edit_page()
     {
         $user = User::factory()->unverified()->create();
@@ -72,10 +63,6 @@ class EmailVerificationTest extends TestCase
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
     }
 
-    /**
-     * 未認証ユーザーが認証必須ページへアクセスすると認証誘導画面へ遷移する
-     * （要件：メール認証を行わずにログインを試みた場合の挙動）
-     */
     public function test_unverified_user_is_redirected_to_verification_notice_page()
     {
         $user = User::factory()->unverified()->create();

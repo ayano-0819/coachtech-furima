@@ -79,19 +79,8 @@
                         >
                             <option value="">選択してください</option>
 
-                            <option
-                                value="convenience"
-                                {{ request('payment_method') === 'convenience' ? 'selected' : '' }}
-                            >
-                                コンビニ支払い
-                            </option>
-
-                            <option
-                                value="card"
-                                {{ request('payment_method') === 'card' ? 'selected' : '' }}
-                            >
-                                カード支払い
-                            </option>
+                            <option value="convenience" {{ request('payment_method') === 'convenience' ? 'selected' : '' }}>コンビニ支払い</option>
+                            <option value="card" {{ request('payment_method') === 'card' ? 'selected' : '' }}>カード支払い</option>
                         </select>
 
                         @error('payment_method')

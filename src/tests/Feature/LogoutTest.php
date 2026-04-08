@@ -10,9 +10,6 @@ class LogoutTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * ログアウトができる
-     */
     public function test_user_can_logout(): void
     {
         $user = User::create([

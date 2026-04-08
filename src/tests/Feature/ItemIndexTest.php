@@ -12,9 +12,6 @@ class ItemIndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 全商品を取得できる
-     */
     public function test_all_items_are_displayed(): void
     {
         $condition = Condition::create([
@@ -62,10 +59,6 @@ class ItemIndexTest extends TestCase
         $response->assertSee('HDD');
     }
 
-    
-    /**
-     * 購入済み商品は「Sold」と表示される
-     */
     public function test_sold_label_is_displayed_for_sold_items(): void
     {
         $condition = Condition::create([
@@ -96,9 +89,6 @@ class ItemIndexTest extends TestCase
         $response->assertSee('Sold');
     }
 
-    /**
-     * 自分が出品した商品は表示されない
-     */
     public function test_own_items_are_not_displayed_for_authenticated_user(): void
     {
         $condition = Condition::create([

@@ -13,9 +13,6 @@ class LikeTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * いいねアイコンを押すと、いいねした商品として登録され、いいね数が増加表示される
-     */
     public function test_user_can_like_an_item_and_like_count_is_displayed()
     {
         $user = User::factory()->create();
@@ -51,9 +48,6 @@ class LikeTest extends TestCase
         $detailResponse->assertSee('images/heart-liked.png');
     }
 
-    /**
-     * 追加済みのアイコンは色が変化する
-     */
     public function test_liked_item_shows_liked_icon()
     {
         $user = User::factory()->create();
@@ -86,9 +80,6 @@ class LikeTest extends TestCase
         $response->assertDontSee('images/heart-default.png');
     }
 
-    /**
-     * 再度いいねアイコンを押すと、いいねを解除でき、いいね数が減少表示される
-     */
     public function test_user_can_unlike_an_item_and_like_count_decreases()
     {
         $user = User::factory()->create();

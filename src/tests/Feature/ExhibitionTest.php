@@ -15,9 +15,6 @@ class ExhibitionTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 商品出品画面で必要な情報が正しく保存される
-     */
     public function test_user_can_create_item_with_all_required_fields()
     {
         Storage::fake('public');

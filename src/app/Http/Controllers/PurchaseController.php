@@ -15,21 +15,21 @@ class PurchaseController extends Controller
 {
     public function create($item_id)
     {
+        $item = Item::findOrFail($item_id);
+        $user = Auth::user();
+
         $currentPurchaseItemId = session('purchase_item_id');
 
-        if (!session()->has('purchase_item_id') || $currentPurchaseItemId != $item_id) {
+        if ($currentPurchaseItemId && $currentPurchaseItemId != $item_id) {
             session()->forget([
                 'postal_code',
                 'address',
                 'building',
                 'payment_method',
             ]);
-
-            session(['purchase_item_id' => $item_id]);
         }
 
-        $item = Item::findOrFail($item_id);
-        $user = Auth::user();
+        session(['purchase_item_id' => $item_id]);
 
         return view('purchase.create', compact('item', 'user'));
     }

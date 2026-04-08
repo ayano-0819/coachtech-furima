@@ -13,9 +13,6 @@ class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * ログイン済みユーザーはコメントを送信できる
-     */
     public function test_authenticated_user_can_post_comment()
     {
         $user = User::factory()->create();
@@ -53,9 +50,6 @@ class CommentTest extends TestCase
         $detailResponse->assertSee('テストコメントです');
     }
 
-    /**
-     * 未ログインユーザーはコメントを送信できない
-     */
     public function test_guest_cannot_post_comment()
     {
         $seller = User::factory()->create();
@@ -79,15 +73,11 @@ class CommentTest extends TestCase
             'content' => 'テストコメントです',
         ]);
 
-        // ログインページへリダイレクト
         $response->assertRedirect('/login');
 
         $this->assertDatabaseCount('comments', 0);
     }
 
-    /**
-     * コメント未入力の場合、バリデーションエラー
-     */
     public function test_comment_validation_fails_when_empty()
     {
         $user = User::factory()->create();
@@ -115,9 +105,6 @@ class CommentTest extends TestCase
         $response->assertSessionHasErrors('content');
     }
 
-    /**
-     * コメントが255文字以上の場合、バリデーションエラー
-     */
     public function test_comment_validation_fails_when_too_long()
     {
         $user = User::factory()->create();

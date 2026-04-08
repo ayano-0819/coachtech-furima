@@ -15,9 +15,6 @@ class ItemDetailTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 商品詳細ページに必要な情報が表示される
-     */
     public function test_item_detail_page_displays_required_information()
     {
         $seller = User::factory()->create();
@@ -82,9 +79,6 @@ class ItemDetailTest extends TestCase
         $response->assertSee('storage/items/test.jpg');
     }
 
-    /**
-     * 複数選択されたカテゴリが商品詳細ページに表示される
-     */
     public function test_multiple_categories_are_displayed_on_item_detail_page()
     {
         $seller = User::factory()->create();

@@ -12,9 +12,6 @@ class ShippingAddressTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 送付先住所変更画面で登録した住所が商品購入画面に反映されている
-     */
     public function test_updated_shipping_address_is_reflected_on_purchase_page()
     {
         $user = User::factory()->create([
@@ -72,9 +69,6 @@ class ShippingAddressTest extends TestCase
         $purchaseResponse->assertSee('新住所マンション202');
     }
 
-    /**
-     * 購入した商品に送付先住所が紐づいて登録される
-     */
     public function test_purchased_item_is_saved_with_updated_shipping_address()
     {
         $buyer = User::factory()->create([

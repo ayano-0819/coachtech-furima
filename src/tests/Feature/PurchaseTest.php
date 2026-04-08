@@ -13,9 +13,6 @@ class PurchaseTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 「購入する」ボタンを押すと購入が完了する
-     */
     public function test_user_can_complete_purchase()
     {
         $buyer = User::factory()->create([
@@ -68,9 +65,6 @@ class PurchaseTest extends TestCase
         ]);
     }
 
-    /**
-     * 購入した商品は商品一覧画面でSoldと表示される
-     */
     public function test_purchased_item_is_displayed_as_sold_on_item_index()
     {
         $buyer = User::factory()->create([
@@ -112,9 +106,6 @@ class PurchaseTest extends TestCase
         $response->assertSee('Sold');
     }
 
-    /**
-     * 購入した商品はプロフィールの購入した商品一覧に追加されている
-     */
     public function test_purchased_item_is_displayed_in_mypage_buy_list()
     {
         $buyer = User::factory()->create([

@@ -42,18 +42,18 @@ docker compose exec php bash
 composer install
 ```
 
-### 6. .envファイルを作成（PHPコンテナ内で入力）
+### 6. .envファイルを作成
 ```bash
 cp .env.example .env
 ```
 
-### 7. アプリケーションキーを生成（PHPコンテナ内で入力）
+### 7. アプリケーションキーを生
 ```bash
 php artisan key:generate
 ```
 
 ### 8. .envファイルを修正
-4で作成された「.env 」を以下のように修正する。
+6で作成された「.env 」を以下のように修正する。
 ```env
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -71,13 +71,12 @@ MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="no-reply@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 
-MAIL_USERNAMEとMAIL_PASSWORDは環境に合わせて設定してください。
-
 STRIPE_KEY=
 STRIPE_SECRET=
-
-STRIPE_KEYとSTRIPE_SECRETは環境に合わせて設定してください。
 ```
+
+※MAIL_USERNAME と MAIL_PASSWORDは各自の環境に合わせて設定する。
+※STRIPE_KEY と STRIPE_SECRETも各自の環境に合わせて設定する。
 
 ### 9. マイグレーション実行
 ```bash
@@ -98,7 +97,7 @@ php artisan storage:link
 
 ## 使用技術
 - PHP 8.1.34
-- Laravel 8.7
+- Laravel 8.x
 - Laravel Fortify
 - MySQL 8.0
 - Nginx 1.21

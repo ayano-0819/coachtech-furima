@@ -13,9 +13,6 @@ class ItemSearchTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * 「商品名」で部分一致検索ができる
-     */
     public function test_items_can_be_searched_by_partial_name_match(): void
     {
         $condition = Condition::create([
@@ -57,9 +54,6 @@ class ItemSearchTest extends TestCase
         $response->assertDontSee('青い靴');
     }
 
-    /**
-     * 検索状態がマイリストでも保持されている
-     */
     public function test_search_keyword_is_kept_on_mylist_page(): void
     {
         $condition = Condition::create([
@@ -116,11 +110,9 @@ class ItemSearchTest extends TestCase
 
         $response->assertStatus(200);
 
-        // 検索結果として部分一致した商品だけ表示
         $response->assertSee('赤いバッグ');
         $response->assertDontSee('青い靴');
 
-        // 検索キーワードが保持されている
         $response->assertSee('value="バッグ"', false);
     }
 }
