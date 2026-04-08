@@ -75,7 +75,7 @@ STRIPE_KEY=
 STRIPE_SECRET=
 ```
 
-※MAIL_USERNAME と MAIL_PASSWORDは各自の環境に合わせて設定する。
+※MAIL_USERNAME と MAIL_PASSWORDは各自の環境に合わせて設定する。<br>
 ※STRIPE_KEY と STRIPE_SECRETも各自の環境に合わせて設定する。
 
 ### 9. マイグレーション実行
