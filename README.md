@@ -47,7 +47,7 @@ composer install
 cp .env.example .env
 ```
 
-### 7. アプリケーションキーを生
+### 7. アプリケーションキーを生成する
 ```bash
 php artisan key:generate
 ```
